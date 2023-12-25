@@ -9,7 +9,9 @@ project("ShastaEdit" CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin")
 
-find_package("Qt6" REQUIRED COMPONENTS "Widgets")
+set(CMAKE_AUTOMOC ON)
+
+find_package("Qt6" REQUIRED COMPONENTS "UiTools" "Widgets")
 
 #---------------------------------------------------------------------------------------------------
 # Configure compiler options
@@ -51,7 +53,9 @@ add_subdirectory("src")
 #---------------------------------------------------------------------------------------------------
 # Test run
 
-set(RUN_ENV)
+set(RUN_ENV
+    "SHASTAEDIT_DATA_DIR=${CMAKE_CURRENT_SOURCE_DIR}/share"
+)
 
 if(CMAKE_GENERATOR STREQUAL "Ninja" OR CMAKE_GENERATOR STREQUAL "Unix Makefiles")
     add_custom_target("run"

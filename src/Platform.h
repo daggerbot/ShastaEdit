@@ -7,6 +7,9 @@
 #ifndef SHASTAEDIT_PLATFORM_H_INCLUDED
 #define SHASTAEDIT_PLATFORM_H_INCLUDED
 
+#include <filesystem>
+#include <vector>
+
 #include <QString>
 
 #include "Types.h"
@@ -35,8 +38,10 @@ namespace ShastaEdit {
 
     namespace Platform {
 
+        std::vector<std::filesystem::path> getDataDirs();
         void installMessageHandler();
         QString toQString(OsStringView osString);
+        QString toQString(const std::filesystem::path& path);
 
     } // namespace Platform
 

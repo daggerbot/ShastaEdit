@@ -32,7 +32,7 @@ namespace {
         int fakeArgc = 1;
         char* fakeArgv[] = {programName.data(), nullptr};
 
-        return Application{fakeArgc, fakeArgv}.exec(ApplicationParams::parse(argc, argv));
+        return Application{fakeArgc, fakeArgv, ApplicationParams::parse(argc, argv)}.exec();
     }
 
 } // namespace

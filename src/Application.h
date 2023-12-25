@@ -7,25 +7,38 @@
 #ifndef SHASTAEDIT_APPLICATION_H_INCLUDED
 #define SHASTAEDIT_APPLICATION_H_INCLUDED
 
+#include <filesystem>
+#include <memory>
+#include <vector>
+
 #include <QApplication>
 
-#include "MainWindow.h"
+class QFile;
 
 namespace ShastaEdit {
 
     struct ApplicationParams;
+    class MainWindow;
 
     class Application : public QApplication {
     public:
-        explicit Application(int& argc, char** argv);
+        explicit Application(int& argc, char** argv, const ApplicationParams& params);
         ~Application();
 
-        MainWindow& mainWindow() { return m_mainWindow; }
+        MainWindow* mainWindow() { return m_mainWindow.get(); }
 
-        int exec(const ApplicationParams& params);
+        int exec();
+        [[noreturn]] void fatal(const QString& message);
+        bool openDataFile(QFile& file, const char* name, QString& outError);
 
     private:
-        MainWindow m_mainWindow;
+        std::vector<std::filesystem::path> m_dataDirs;
+
+        std::unique_ptr<MainWindow> m_mainWindow;
+
+        void initDataDirs();
+
+        void initMainWindow();
     };
 
 } // namespace ShastaEdit

@@ -9,11 +9,13 @@ add_executable("shastaedit" WIN32
     "CommandLine.cpp"
     "Main.cpp"
     "MainWindow.cpp"
+    "UiLoader.cpp"
 )
 
 target_link_libraries("shastaedit"
     PRIVATE
         "shasta_compiler_options"
+        "Qt6::UiTools"
         "Qt6::Widgets"
 )
 

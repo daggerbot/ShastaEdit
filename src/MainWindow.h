@@ -14,14 +14,11 @@ namespace ShastaEdit {
     class Application;
 
     class MainWindow : public QMainWindow {
+        Q_OBJECT
+
     public:
-        explicit MainWindow(Application& app);
+        MainWindow();
         ~MainWindow();
-
-        Application& application() { return m_app; }
-
-    private:
-        Application& m_app;
     };
 
 } // namespace ShastaEdit

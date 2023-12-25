@@ -8,9 +8,8 @@
 
 using namespace ShastaEdit;
 
-MainWindow::MainWindow(Application& app)
+MainWindow::MainWindow()
     : QMainWindow{}
-    , m_app{app}
 {
 }
 
